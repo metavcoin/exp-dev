@@ -1,0 +1,22 @@
+{
+  "db": {
+    "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": {
+        "rejectUnauthorized": false
+      }
+    }
+  },
+  "encryption": {
+    "saltRounds": 10
+  },
+  "http": {
+    "request": {
+      "limit": "100kb"
+    }
+  },
+  "cors": {
+    "enabled": true,
+    "origins": "zp.io"
+  }
+}

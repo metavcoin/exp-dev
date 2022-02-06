@@ -1,0 +1,188 @@
+@startuml "database structure"
+!include ./helpers.puml
+
+scale 1
+title Block Explorer
+
+package "Blockchain" {
+  Table(Block, "Block") {
+    primary_key(blockNumber)
+    version
+    hash
+    parent
+    commitments
+    timestamp
+    difficulty
+    nonce1
+    nonce2
+    txsCount
+    reward
+    coinbaseAmount,
+    allocationAmount,
+  }
+
+  Table(Tx, "Tx") {
+    primary_key(id)
+    foreign_key(blockNumber)
+    index field_comment(tx index in block)
+    version
+    hash
+    inputCount
+    outputCount
+  }
+
+  Table(Input, "Input") {
+    primary_key(id)
+    foreign_key(blockNumber)
+    foreign_key(txId)
+    foreign_key(outputId)
+    index field_comment(input index in tx)
+    outpointTxHash
+    outpointIndex
+    isMint
+    lockType field_comment(from outpoint)
+    address field_comment(from outpoint)
+    asset field_comment(from mint or outpoint)
+    amount field_comment(from mint or outpoint)
+  }
+
+  Table(Output, "Output") {
+    primary_key(id)
+    foreign_key(blockNumber)
+    foreign_key(txId)
+    index field_comment(output index in tx)
+    lockType
+    lockValue
+    address
+    asset
+    amount
+  }
+
+  Table(Contract, "Contract") {
+    primary_key(id)
+    address
+    version
+    code
+    expiryBlock field_comment(null when expired)
+    txsCount
+    assetsIssued
+    lastActivationBlock
+  }
+
+  Table(Execution, "Execution") {
+    primary_key(id)
+    foreign_key(contractId)
+    foreign_key(blockNumber)
+    foreign_key(txId)
+    command
+    messageBody
+    indexInTx
+  }
+
+  Table(Address, "Address") {
+    primary_key(id)
+    address
+    asset
+    inputSum
+    outputSum
+    balance
+    txsCount
+  }
+
+  Table(Asset, "Asset") {
+    primary_key(asset)
+    issued
+    destroyed
+    outstanding field_comment(issued - destroyed)
+    keyholders
+    txsCount
+  }
+
+  Table(AddressTxs, "AddressTxs") {
+    foreign_key(blockNumber)
+    foreign_key(txId)
+    address
+  }
+
+  Table(AssetTxs, "AssetTxs") {
+    foreign_key(blockNumber)
+    foreign_key(txId)
+    asset
+  }
+
+  Table(Info, "Info") {
+    name
+    value
+  }
+  note right of Info : gathers all up to date statistics
+
+  ' relations
+  Block "1" <--> "*" Tx
+  Tx "1" <--> "*" Output
+  Tx "1" <--> "*" Input
+  Contract "1" <--> "*" Execution
+  Tx "1" <--> "*" Execution
+  Tx "*" <--> "*" Contract : Via Activations
+  Tx "1" <--> "*" AddressTxs
+  Tx "1" <--> "*" AssetTxs
+
+  note "Each child of a Tx can also join by block number" as NoteChildrenBlock
+}
+
+package "Votes" {
+  Table(RepoVoteInterval, "RepoVoteInterval") {
+    primary_key(id)
+    interval field_type(number)
+    phase field_comment(Contestant/Candidate)
+    beginBlock
+    endBlock
+    threshold field_comment(in Kalapas)
+    hasSnapshot
+  }
+  Table(Snapshot, "Snapshot") {
+    blockNumber
+    address
+    amount
+  }
+  Table(RepoVote, "RepoVote") {
+    primary_key(id)
+    foreign_key(executionId)
+    foreign_key(blockNumber)
+    txHash
+    commitId
+    address
+  }
+  Table(CGPVote, "CGPVote") {
+    primary_key(id)
+    foreign_key(executionId)
+    foreign_key(blockNumber)
+    txHash
+    type field_comment(allocation/payout/nomination)
+    ballot
+    address field_comment(the voter)
+  }
+
+  RepoVote "1" <--> "*" Execution
+  CGPVote "1" <--> "*" Execution
+}
+
+package "Charts" {
+  Table(TxsPerDay, "TxsPerDay") {
+    primary_key(id)
+    date
+    value
+  }
+  Table(DifficultyPerDay, "DifficultyPerDay") {
+    primary_key(id)
+    date
+    value
+  }
+  Table(ZpSupply, "ZpSupplyPerDay") {
+    primary_key(id)
+    date
+    value
+  }
+  
+}
+
+@enduml

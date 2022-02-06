@@ -1,0 +1,9 @@
+version: "3"
+services:
+  metavcoin-node:
+    build:
+      context: ./metavcoin-node
+      dockerfile: Dockerfile
+    command: metavcoin-node --test --api *:5050 --addressdb --data-path "/home/ubuntu/metavcoin-data"
+    ports: 
+      - 5050:5050

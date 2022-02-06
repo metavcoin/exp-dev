@@ -1,0 +1,17 @@
+@import 'src/style/variables';
+
+.Info {
+  .content-box.chain .icon {
+    color: $red !important;
+  }
+  .content-box.chain .content .value {
+    font-family: 'Roboto';
+  }
+  .content-box.blocks .icon {
+    color: $blue !important;
+    font-size: 3rem;
+  }
+  .charts .col-lg-6 {
+    margin-bottom: 42px;
+  }
+}

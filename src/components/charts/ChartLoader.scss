@@ -1,0 +1,38 @@
+@import 'src/style/variables';
+.Chart {
+  background-color: $gray-900;
+  
+  .chart-wrapper {
+    position: relative;
+
+    .loading-above {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &.clickable {
+    cursor: pointer;
+
+    &:hover {
+      background-color: $gray-800;
+
+      .title a {
+        text-decoration: underline;
+      }
+    }
+  }
+  .title {
+    border-width: 0;
+    font-weight: $font-weight-bold;
+    border-bottom-width: 1px;
+    border-style: solid;
+    padding: 25px;
+    margin-bottom: 40px;
+  }
+  .title a {
+    color: inherit;
+  }
+}

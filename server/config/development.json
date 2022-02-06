@@ -1,0 +1,34 @@
+{
+  "db": {
+    "username": "postgres",
+    "password": "123456",
+    "database": "metavcoin_explorer_development",
+    "host": "db",
+    "dialect": "postgres"
+  },
+  "redis": "redis://redis:6379",
+  "encryption": {
+    "saltRounds": 5
+  },
+  "jwt": {
+    "secret": "DevelopmentSecret15003"
+  },
+  "server": {
+    "port": 3000
+  },
+  "http": {
+    "request": {
+      "limit": "10mb"
+    }
+  },
+  "zp": {
+    "node": "http://metavcoin-node:5050"
+  },
+  "governance": {
+    "afterTallyBlocks": 10
+  },
+  "cors": {
+    "enabled": false,
+    "origins": ""
+  }
+}

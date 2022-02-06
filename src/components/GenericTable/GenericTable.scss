@@ -1,0 +1,150 @@
+@import 'src/style/variables';
+
+.GenericTable .ReactTable {
+  .rt-thead .rt-tr {
+    border-bottom: 1px solid $black;
+  }
+  .rt-tbody .rt-tr-group {
+    border-bottom: none;
+    background-color: $gray-1000;
+  }
+  
+  .rt-td {
+    border-bottom: 1px solid $border-color;
+  }
+  
+  .rt-tbody .rt-tr {
+    background-color: $table-bg;
+  }
+
+  .rt-tr-group.last > .rt-tr .rt-td {
+    border-bottom-color: transparent;
+  }
+  
+  .rt-tr.-padRow .rt-td {
+    border-color: transparent;
+  }
+  
+  .rt-thead {
+    background-color: $table-head-bg;
+  }
+  .rt-thead .rt-th {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-normal;
+    text-transform: uppercase;
+    color: $table-head-color;
+    text-align: left;
+    padding: $table-header-padding-y $content-padding-x;
+    border-right-color: transparent;
+    white-space: nowrap;
+    overflow: visible;
+
+    // column title
+    > div {
+      display: inline-block;
+    }
+
+    &.-cursor-pointer,
+    &.-sort-asc,
+    &.-sort-desc {
+      box-shadow: none;
+    }
+
+    &.-cursor-pointer::after,
+    &.-sort-asc::after,
+    &.-sort-desc::after {
+      font-family: "Font Awesome 5 Pro";
+      font-weight: 900;
+      display: inline-block;
+      margin-left: 12px;
+    }
+    &.-cursor-pointer::after {
+      content: '\F0DC';
+    }
+    &.-sort-asc::after {
+      content: '\F0D8';
+    }
+    &.-sort-desc::after {
+      content: '\F0D7';
+    }
+  }
+  
+  .rt-tbody {
+    overflow: visible;
+  }
+  .rt-td {
+    font-weight: $font-weight-normal;
+    padding: $table-padding-y $content-padding-x;
+    overflow: visible;
+  }
+  
+  .pagination-bottom {
+    margin-top: map-get($spacers, 4);
+  }
+  .-pagination {
+    justify-content: flex-end;
+  }
+  
+  .pagination-bottom .pagination {
+    margin-bottom: 0;
+  }
+  
+  .loading .rt-noData {
+    display: none;
+  }
+
+  .GenericTable .ReactTable {
+    .rt-tr {
+      background-color: transparent;
+    }
+  }
+
+  .page-item {
+    &.page-number {
+      display: none;
+    }
+    .page-link {
+      user-select: none;
+      border-right-width: 1px;
+      color: $pagination-color;
+    }
+    &:last-child .page-link {
+      border-right-width: 0;
+    }
+    &.active { 
+      &.page-number {
+        display: block;
+      }
+      .page-link {
+        font-weight: $font-weight-bold;
+        
+        &:hover {
+          color: $white;
+        } 
+      }
+    }
+  }
+
+  @media (min-width: map-get($grid-breakpoints, "md")) {
+    .page-item {
+      &.page-number {
+        display: block;
+      }
+      &.page-skip-first,
+      &.page-skip-last {
+        display: none;
+      }
+    }
+  }
+
+  @media (min-width: map-get($grid-breakpoints, "lg")) {
+    // .rt-thead .rt-th {
+    //   white-space: nowrap;
+    // }
+    .rt-thead .rt-th,
+    .rt-td {
+      padding-left: $table-padding-x-md;
+      padding-right: $table-padding-x-md;
+    }
+  }
+}

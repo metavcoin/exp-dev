@@ -1,0 +1,7 @@
+@import 'src/style/variables';
+.TestnetBar {
+  height: 40px;
+  background-color: $blue;
+  color: $white;
+  font-weight: $font-weight-bold;
+}

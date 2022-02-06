@@ -1,0 +1,112 @@
+@import 'src/style/variables';
+
+.CGP {
+  .table-metavcoin {
+    margin-bottom: 0;
+
+    .inner-header {
+      font-weight: 500;
+    }
+  }
+
+  %message-shared {
+    padding: 40px 0;
+    font-weight: $font-weight-bold;
+    font-size: $h3-font-size;
+    text-transform: uppercase;
+  }
+
+  .before-snapshot-message {
+    @extend %message-shared;
+    color: $red;
+  }
+
+  .during-vote-message {
+    @extend %message-shared;
+  }
+
+  .after-tally-message {
+    @extend %message-shared;
+
+    .small {
+      font-size: 1rem;
+    }
+  }
+
+  .col.winner {
+    min-width: 250px;
+  }
+
+  .table-bg-wrapper {
+    height: 100%;
+    background-color: $table-bg;
+  }
+
+  .TallyTable {
+    margin-top: 1rem;
+    @media (min-width: map-get($grid-breakpoints, "lg")) {
+      margin-top: 0;
+    }
+
+    .header-table{
+      th.text-right {
+        padding-right: $content-padding-x + 11;
+      }
+      @media (min-width: map-get($grid-breakpoints, "lg")) {
+        th.text-right {
+          padding-right: $content-padding-x-lg;
+        }
+      }
+    }
+    .body-table {
+      overflow: auto;
+      max-height: 220px;
+      @include mixin-metavcoin-scrollbar();
+  
+      @media (min-width: map-get($grid-breakpoints, "lg")) {
+        td.text-right {
+          padding-right: $content-padding-x-lg - 11;
+        }
+      }
+    }
+  }
+
+  .GenericTable .ReactTable .rt-tbody .rt-tr {
+    &.above-threshold {
+      .rt-td {
+        font-weight: 500;
+      }
+    }
+  }
+
+  // A TransactionAsset as a sub component of a GenericTable
+  .GenericTable .spends {
+    margin-bottom: 0;
+
+    .rt-thead {
+      background-color: transparent;
+
+      .rt-tr {
+        border-bottom-color: $border-color;
+      }
+      .rt-th {
+        padding: $table-padding-y $content-padding-x;
+      }
+    }
+    
+  }
+
+  @media (min-width: map-get($grid-breakpoints, "lg")) {
+    .GenericTable .spends  {
+      align-self: flex-end;
+      width: 80%;
+
+      .GenericTable {
+        .rt-thead .rt-th {
+          padding-left: $content-padding-x-lg;
+          padding-right: $content-padding-x-lg;
+        }
+      }
+    }
+  }
+}

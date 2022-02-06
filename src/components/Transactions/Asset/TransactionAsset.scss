@@ -1,0 +1,84 @@
+@import 'src/style/variables';
+.TransactionAsset {
+  margin-bottom: 20px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &.hide-header {
+    .rt-thead {
+      display: none;
+    }
+  }
+  .GenericTable .ReactTable .pagination-bottom {
+    display: none;
+  }
+
+  .amount {
+    display: inline-block;
+    padding: 2px 14px;
+    border: solid 1px transparent;
+  }
+  .total {
+    border-color: $gray;
+  }
+  &.output .arrow,
+  &.output .total {
+    color: $green;
+    border-color: $green;
+  }
+  &.input .arrow,
+  &.input .total {
+    color: $red;
+    border-color: $red;
+  }
+  &.input.output .arrow,
+  &.input.output .total {
+    color: $red;
+    border-color: $red;
+  }
+
+  .rt-td.column-total {
+    padding-top: 0;
+    padding-bottom: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .rt-th.column-total {
+    padding-left: $content-padding-x + 14px !important;
+  }
+  @media (min-width: map-get($grid-breakpoints, "lg")) {
+    .rt-th.column-total {
+      padding-left: $content-padding-x-lg + 14px !important;
+    }
+  }
+}
+
+// A TransactionAsset as a sub component of a GenericTable
+.GenericTable .TransactionAsset {
+  margin-bottom: 0;
+
+  .rt-thead {
+    background-color: transparent;
+
+    .rt-tr {
+      border-bottom-color: $border-color;
+    }
+    .rt-th {
+      padding: $table-padding-y $content-padding-x;
+    }
+  }
+  
+}
+
+@media (min-width: map-get($grid-breakpoints, "lg")) {
+  .GenericTable .TransactionAsset  {
+    .GenericTable {
+      .rt-thead .rt-th {
+        padding-left: $content-padding-x-lg;
+        padding-right: $content-padding-x-lg;
+      }
+    }
+  }
+}

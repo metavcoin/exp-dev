@@ -1,0 +1,65 @@
+{
+  "votingContractId": "contract_id_here",
+  "queues": {
+    "cleanInterval": 60,
+    "cleanAfter": 10,
+    "slackTimeLimit": 3600,
+    "addBlocks": {
+      "name": "Add Blocks From Node",
+      "limitBlocks": 10000
+    },
+    "updateGeneralInfos": {
+      "name": "Update General Infos"
+    },
+    "contracts": {
+      "name": "Contracts"
+    },
+    "executions": {
+      "name": "Executions"
+    },
+    "reorgs": {
+      "name": "Reorgs"
+    },
+    "reorgs-scan": {
+      "name": "Reorgs scan"
+    },
+    "views-refresh": {
+      "name": "Refresh materialized views"
+    },
+    "votes": {
+      "name": "Votes"
+    },
+    "cgp": {
+      "name": "CGP"
+    },
+    "cgp-winner": {
+      "name": "CGP Winner"
+    },
+    "snapshots": {
+      "name": "Vote Snapshots"
+    },
+    "stats": {
+      "name": "Stats"
+    }
+  },
+  "governance": {
+    "afterTallyBlocks": 1000,
+    "defaultCommitId": "0000000000000000000000000000000000000000"
+  },
+  "coinbaseMaturity": {
+    "main": 100,
+    "test": 10
+  },
+  "cgp": {
+    "main": {
+      "afterTallyBlocks": 1000,
+      "intervalLength": 10000,
+      "thresholdPercentage": 3
+    },
+    "test": {
+      "afterTallyBlocks": 10,
+      "intervalLength": 100,
+      "thresholdPercentage": 3
+    }
+  }
+}
